@@ -17,7 +17,7 @@ def getConn():
 def home():
     return render_template('home.html')
 
-#1 - create a new Customer record.
+#1 - Create a new Customer record.
 @app.route('/addCustomer', methods=['POST'])
 def addEmployee():
     conn = None
