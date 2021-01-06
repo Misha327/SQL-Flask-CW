@@ -17,7 +17,7 @@ def getConn():
 def home():
     return render_template('home.html')
 
-#1
+#1 - create a new Customer record.
 @app.route('/addCustomer', methods=['POST'])
 def addEmployee():
     conn = None
@@ -39,7 +39,7 @@ def addEmployee():
         if conn:
             conn.close()
 
-#2
+#2 - Create a new support ticket for a customer with respect to a given product. 
 @app.route('/createTicket', methods=['POST'])
 def createTicket():
     conn = None
@@ -69,7 +69,7 @@ def createTicket():
         if conn:
             conn.close()
 
-#3
+#3 - Add an update to the support ticket from a given staff member.
 @app.route('/updateTicket', methods=['POST'])
 def updateTicket():
     conn = None
@@ -93,7 +93,7 @@ def updateTicket():
         if conn:
             conn.close()
 
-#4
+#4 - List all outstanding support tickets along with the time of the last update
 @app.route('/showOpenTickets', methods=['GET'])
 def showOpenTickets():
     conn = None
@@ -116,7 +116,7 @@ def showOpenTickets():
         if conn:
             conn.close()
 
-#5
+#5 - Set the status of a support ticket to closed.
 @app.route('/closeTicket', methods=['POST'])
 def closeTicket():
     conn = None
@@ -136,7 +136,7 @@ def closeTicket():
         if conn:
             conn.close()
 
-#6
+#6 - List the original problem as the question along with all updates in chronological order. 
 @app.route('/ticketUpdates', methods=['GET'])
 def ticketUpdates():
     conn = None
@@ -163,7 +163,7 @@ def ticketUpdates():
         if conn:
             conn.close()
 
-#7
+#7 - Produce a report showing the status of each closed support ticket.
 @app.route('/ticketReport', methods=['GET'])
 def ticketReport():
     conn = None
@@ -187,7 +187,8 @@ def ticketReport():
         if conn:
             conn.close()
 
-#8
+#8 - Permanantly remove the customer’s details.
+#    Should not be possible while the customer is associated with any tickets.
 @app.route('/removeCustomer', methods=['GET'])
 def removeCustomer():
     conn = None
