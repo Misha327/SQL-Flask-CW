@@ -1,0 +1,65 @@
+--Customer test data
+INSERT INTO customer (customerid, name, email) 
+VALUES (101, 'Bob Smith', 'bobsmith@email.com');
+
+INSERT INTO customer (customerid, name, email) 
+VALUES (102, 'Jane Williams', 'janewilliams@email.com');
+
+INSERT INTO customer (customerid, name, email) 
+VALUES (103, 'Tom Bell', 'tombell@email.com');
+
+--Product test data
+INSERT INTO product (productid, name)
+VALUES (123, 'Fridge');
+
+INSERT INTO product (productid, name)
+VALUES (124, 'Computer');
+
+INSERT INTO product (productid, name)
+VALUES (125, 'Phone');
+
+--Staff test data
+INSERT INTO staff (staffid, name)
+VALUES (1234, 'Celia Flores');
+
+INSERT INTO staff (staffid, name)
+VALUES (2345, 'Richard Mason');
+
+INSERT INTO staff (staffid, name)
+VALUES (3456, 'Naomi Miller');
+
+INSERT INTO staff (staffid, name)
+VALUES (4321, 'Austin Walton');
+
+--Ticket test data, status defaults to "open", priority defaults to "3"
+INSERT INTO ticket (ticketid, problem, customerid, productid)
+VALUES (997, 'How do I put food in the fridge', 103, 123);
+
+INSERT INTO ticket (ticketid, problem, priority, customerid, productid)
+VALUES (999, 'My computer will not turn on', 1, 101, 124);
+
+INSERT INTO ticket (ticketid, problem, priority, customerid, productid)
+VALUES (998, 'I cannot check the weather on my phone', 2, 102,125);
+
+INSERT INTO ticket (ticketid, problem, status, priority, customerid, productid)
+VALUES (996, 'Mouse keeps disconecting', 'Closed', 2, 102, 124);
+
+--Ticketupdate test data insert seperatly to allow different timestamps
+INSERT INTO ticketupdate (ticketupdateid, message, ticketid, staffid)
+VALUES (10001, 'Could you see if it is plugged in', 999, 2345);
+
+INSERT INTO ticketupdate (ticketupdateid, message, ticketid, staffid)
+VALUES (20001, 'Try reinstalling the weather app', 998, 1234);
+
+INSERT INTO ticketupdate (ticketupdateid, message, ticketid, staffid)
+VALUES (30001, 'Open the door and place your food inside', 997, 3456);
+
+INSERT INTO ticketupdate (ticketupdateid, message, ticketid, staffid)
+VALUES (40001, 'Could you try to plug it out and blow on the usb connector', 996, 1234);
+
+INSERT INTO ticketupdate (ticketupdateid, message, ticketid)
+VALUES (10002, 'The computer is plugged in, still doesn''t work', 999);
+
+INSERT INTO ticketupdate (ticketupdateid, message, ticketid)
+VALUES (40002, 'That was a bad advice, it also didn''t work', 996);
+

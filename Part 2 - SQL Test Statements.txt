@@ -1,0 +1,49 @@
+--Statement 1
+INSERT INTO customer (customerid, name, email)
+VALUES (104, 'Rob Dennis', 'bobdennis@email.com');
+
+--Statement 2
+INSERT INTO ticket (ticketid, problem, priority, customerid, productid)
+VALUES (991, 'Help me please', 3, 101, 123);
+SELECT * FROM ticket WHERE ticketid = 991;
+
+--Statement 3
+INSERT INTO ticketupdate (ticketupdateid, message, ticketid, staffid)
+VALUES (50001, 'Please could specify your problem', 991, 1234);
+
+--Statement 4
+SELECT ticket.ticketid, status, MAX(updatetime) AS lastupdate
+FROM ticket LEFT JOIN ticketupdate ON ticket.ticketid = ticketupdate.ticketid
+WHERE status = 'open' 
+GROUP BY ticket.ticketid, status;
+
+--Statement 5
+UPDATE ticket SET status = 'closed' WHERE ticketid = 991;
+
+--Statement 6
+SELECT problem AS question, 
+CASE 
+    WHEN ticketupdate.staffid IS NULL
+    THEN customer.name
+    ELSE staff.name
+END AS author_name,
+message, updatetime FROM ticketupdate
+INNER JOIN ticket ON ticketupdate.ticketid = ticket.ticketid
+INNER JOIN customer ON ticket.customerid = customer.customerid
+LEFT JOIN staff ON ticketupdate.staffid = staff.staffid
+WHERE ticketupdate.ticketid = 999
+ORDER BY updatetime;
+
+--Statement 7
+SELECT ticket.ticketid, COUNT(message) AS num_updates, MIN(updatetime - loggedtime) 
+AS first_update, MAX(updatetime - loggedtime) AS last_update FROM ticket 
+LEFT JOIN ticketupdate ON ticket.ticketid = ticketupdate.ticketid 
+WHERE status = 'closed' 
+GROUP BY ticket.ticketid;
+
+--Statement 8 foreign key constraint prevents from being deleted when associated with a ticket
+DELETE FROM customer WHERE customerid = 104;
+
+
+
+
